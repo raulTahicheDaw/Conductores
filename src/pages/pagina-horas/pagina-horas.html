@@ -1,0 +1,43 @@
+<ion-header>
+
+  <ion-navbar color="blueGray">
+    <ion-title>Horas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-icon item-start name="calendar"></ion-icon>
+      <ion-label>Desde:</ion-label>
+      <ion-datetime displayFormat="DD/MMM/YYYY"></ion-datetime>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-icon item-start name="calendar"></ion-icon>
+      <ion-label>Hasta:</ion-label>
+      <ion-datetime displayFormat="DD/MMM/YYYY"></ion-datetime>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid class="tabla">
+        <ion-row>
+          <ion-col text-end align-self-center class="leyenda">Dias:</ion-col>
+          <ion-col text-center class="cantidad">7</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col text-end align-self-center class="leyenda">Horas:</ion-col>
+          <ion-col text-center class="cantidad">40</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col text-end align-self-center class="leyenda">Dias libres:</ion-col>
+          <ion-col text-center class="cantidad">2</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

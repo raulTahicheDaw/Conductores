@@ -1,0 +1,17 @@
+page-home {
+  h1,
+  img,
+  h4,
+  button {
+    margin-top: 30px !important;
+  }
+  img {
+    width: 100%;
+  }
+
+  ion-footer {
+    font-size: smaller;
+    font-style: italic;
+    margin-bottom: 15px !important;
+  }
+}

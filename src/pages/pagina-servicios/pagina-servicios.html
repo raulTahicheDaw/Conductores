@@ -1,0 +1,70 @@
+<ion-header>
+
+  <ion-navbar color="blueGray">
+    <ion-title>Servicios del Dia</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-fab top right edge>
+    <button ion-fab color="light">
+      <ion-icon name="list"></ion-icon>
+    </button>
+    <ion-fab-list side="left">
+      <button ion-button small color="secondaryVariant">Cerrar Dia</button>
+      <button ion-button small (click)="nuevo_servicio()">Añad. Serv</button>
+
+    </ion-fab-list>
+  </ion-fab>
+  <ion-card>
+    <ion-item>
+      <ion-label>Selecciona dia:</ion-label>
+      <ion-datetime displayFormat="DD MMM YYYY"></ion-datetime>
+      <ion-badge item-end color="secondary">Abierto</ion-badge>
+    </ion-item>
+  </ion-card>
+  <ion-list>
+    <ion-item-sliding #item *ngFor="let servicio of servicios | async">
+      <ion-item>
+        <ion-card padding color="blueGray">
+          <ion-card-title>
+            <ion-row>
+              <ion-col>{{servicio.hora_inicio}}</ion-col>
+              <ion-col text-right class="orden">{{servicio.orden}}</ion-col>
+              <ion-col text-right class="orden">{{servicio.pax}}</ion-col>
+            </ion-row>
+          </ion-card-title>
+          <ion-card-content>
+            <ion-row>
+              <ion-col><h2>{{servicio.lugar_inicio}}-{{servicio.tipo}}--{{servicio.lugar_fin}}</h2></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                Fin: <h1 align-self-end>{{servicio.hora_fin}}</h1>
+              </ion-col>
+              <ion-col text-right align-self-end>
+                <ion-icon name="checkbox-outline" color="secondary"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="light">
+          <ion-icon name="create"></ion-icon>
+          Modif.
+        </button>
+        <button ion-button color="light">
+          <ion-icon name="trash"></ion-icon>
+          Borrar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+
+  </ion-list>
+
+</ion-content>
