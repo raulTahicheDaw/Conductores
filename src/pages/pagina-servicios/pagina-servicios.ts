@@ -10,6 +10,7 @@ import {ServicioInterface} from "../../models/servicio.interface";
   templateUrl: 'pagina-servicios.html',
 })
 export class PaginaServiciosPage {
+  fecha: string;
   serviciosCollection: AngularFirestoreCollection<ServicioInterface>;
   servicios: Observable<ServicioInterface[]>;
 
