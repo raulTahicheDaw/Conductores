@@ -1,8 +1,18 @@
-import { Component } from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
-import {AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore'
-import { Observable } from 'rxjs/Observable';
+import {Component} from '@angular/core';
+import {
+  AlertController,
+  IonicPage,
+  ModalController,
+  NavController,
+  NavParams,
+  ToastController
+} from 'ionic-angular';
+import {AngularFirestoreCollection} from 'angularfire2/firestore'
 import {ServicioInterface} from "../../models/servicio.interface";
+import moment from 'moment';
+//import {ServiciosProvider} from "../../providers/servicios/servicios";
+import {DatabaseProvider} from "../../providers/database/database";
+
 
 @IonicPage()
 @Component({
@@ -10,27 +20,67 @@ import {ServicioInterface} from "../../models/servicio.interface";
   templateUrl: 'pagina-servicios.html',
 })
 export class PaginaServiciosPage {
-  fecha: string;
+  fecha = moment().format("YYYY-MM-DD");
+
+  private _COLL: string = "servicios";
+  public servicios: any;
+
+
   serviciosCollection: AngularFirestoreCollection<ServicioInterface>;
-  servicios: Observable<ServicioInterface[]>;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private asf: AngularFirestore,
-              private modalCtrl: ModalController) {
+              private modalCtrl: ModalController,
+              private toastCtrl: ToastController,
+              private _DB: DatabaseProvider,
+              private alertCtrl: AlertController) {
   }
 
   ionViewDidEnter() {
-    this.serviciosCollection = this.asf.collection('servicios');
-    this.servicios = this.serviciosCollection.valueChanges();
+    this.obtener_servicios();
+  }
+
+  obtener_servicios(): void {
+    this._DB.getServicios(this._COLL, this.fecha)
+      .then((data) => {
+        this.servicios = data;
+
+      })
+      .catch();
   }
 
   nuevo_servicio() {
-    let modalNuevoServicio = this.modalCtrl.create("ServicioModalPage", {
-
-    });
-    modalNuevoServicio.present();
-    modalNuevoServicio.onDidDismiss(servicio => {
-    });
+   this.navCtrl.push('ServicioModalPage',{fecha: this.fecha, });
   }
+
+  actualizar_servicio (servicio){
+    this.navCtrl.push('ServicioModalPage',{fecha: this.fecha, actualizar: true, servicio: servicio });
+  }
+
+  eliminar_servicio(servicio): void {
+    this._DB.deleteServicio(this._COLL,
+      servicio.id)
+      .then((data: any) => {
+        this.displayAlert('Eliminado', 'El servicio se ha eliminado correctamente');
+      })
+      .catch((error: any) => {
+        this.displayAlert('Error', error.message);
+      });
+  }
+
+  displayAlert(title: string,
+               message: string): void {
+    let alert: any = this.alertCtrl.create({
+      title: title,
+      subTitle: message,
+      buttons: [{
+        text: 'De acuerdo!',
+        handler: () => {
+          this.obtener_servicios();
+        }
+      }]
+    });
+    alert.present();
+  }
+
 }

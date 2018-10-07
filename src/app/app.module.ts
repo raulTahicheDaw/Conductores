@@ -18,6 +18,8 @@ import {PaginaEstadisticasPage} from "../pages/pagina-estadisticas/pagina-estadi
 import {PaginaCalendarioPage} from "../pages/pagina-calendario/pagina-calendario";
 import {PaginaResumenPage} from "../pages/pagina-resumen/pagina-resumen";
 import {PaginaServiciosPage} from "../pages/pagina-servicios/pagina-servicios";
+import { DatabaseProvider } from '../providers/database/database';
+import { HttpClientModule} from "@angular/common/http";
 
 export const firebaseconfig = {
   apiKey: "AIzaSyB3kWGIZjsQSih-PrECSCx9A0RMmD97_iY",
@@ -43,7 +45,8 @@ export const firebaseconfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseconfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -59,7 +62,9 @@ export const firebaseconfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatabaseProvider,
+
   ]
 })
 export class AppModule {

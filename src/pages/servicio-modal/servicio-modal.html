@@ -1,54 +1,51 @@
-
 <ion-header>
-
-  <ion-navbar color="secondaryVariant">
-    <ion-buttons start>
-      <button ion-button icon-only (click)="cancel()">
-        <ion-icon name="close"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-title>Nuevo Servicio</ion-title>
+  <ion-navbar color="blueGray">
+    <ion-title>
+      {{title}}
+    </ion-title>
   </ion-navbar>
 </ion-header>
-
-
-<ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label>Hora de Comienzo</ion-label>
-      <ion-datetime displayFormat="HH:mm" [(ngModel)]="horaComienzo"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label>Tipo</ion-label>
-      <ion-select [(ngModel)]="tipo" (ionChange)='entrada_salida()'>
-        <ion-option value="entrada">Entrada</ion-option>
-        <ion-option value="salida">Salida</ion-option>
-        <ion-option value="traslado">Traslado</ion-option>
-        <ion-option value="excursion">Excursión</ion-option>
-        <ion-option value="otro">Otro</ion-option>
-        <ion-option value="partido">T.Partido</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>Comienzo en ...</ion-label>
-      <ion-input text-end [(ngModel)]="lugarComienzo" ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Termina en ...</ion-label>
-      <ion-input text-end [(ngModel)]="lugarFin"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Pax</ion-label>
-      <ion-input text-end type="number" [(ngModel)]="pax"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Número orden</ion-label>
-      <ion-input text-end type="number" [(ngModel)]="orden"></ion-input>
-    </ion-item>
-
-  </ion-list>
-
-  <button ion-button full icon-left (click)="save()" color="secondary">
-    <ion-icon name="checkmark"></ion-icon> Añadir Servicio
-  </button>
+<ion-content padding class="sample-modal-page">
+  <ion-item>
+    <ion-label>Hora de Comienzo</ion-label>
+    <ion-datetime displayFormat="HH:mm" [(ngModel)]="horaComienzo"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tipo</ion-label>
+    <ion-select [(ngModel)]="tipo" (ionChange)='entrada_salida()'>
+      <ion-option value="Entrada">Entrada</ion-option>
+      <ion-option value="Salida">Salida</ion-option>
+      <ion-option value="Traslado">Traslado</ion-option>
+      <ion-option value="Excursion">Excursión</ion-option>
+      <ion-option value="Otro">Otro</ion-option>
+      <ion-option value="Partido">T.Partido</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Comienzo en ...</ion-label>
+    <ion-input text-end [(ngModel)]="lugarComienzo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Termina en ...</ion-label>
+    <ion-input text-end [(ngModel)]="lugarFin"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Pax</ion-label>
+    <ion-input text-end type="number" [(ngModel)]="pax"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Número orden</ion-label>
+    <ion-input text-end type="number" [(ngModel)]="orden"></ion-input>
+  </ion-item>
+  <ion-item>
+    <button ion-button outline (click)="cancel()">
+      Salir
+    </button>
+    <button ion-button outline item-end (click)="save()" *ngIf="!actualizar">
+      Guardar
+    </button>
+    <button ion-button outline item-end (click)="update()" *ngIf="actualizar">
+      Actualizar
+    </button>
+  </ion-item>
 </ion-content>
