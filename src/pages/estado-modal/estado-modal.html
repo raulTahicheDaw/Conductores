@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Cambiar Estado</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-row>
+    <ion-note item-start>{{servicio.horaInicio}}</ion-note>
+    <h3>{{servicio.servicio}}</h3>
+  </ion-row>
+
+  <ion-item>
+    <ion-label>Estado</ion-label>
+    <ion-select [(ngModel)]="estado">
+      <ion-option value="pendiente">Pendiente</ion-option>
+      <ion-option value="terminado">Terminado</ion-option>
+      <ion-option value="cancelado">Cancelado</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="estado=='terminado'">
+    <ion-label>Hora fin</ion-label>
+    <ion-datetime displayFormat="HH:mm" [(ngModel)]="horaFin"></ion-datetime>
+  </ion-item>
+  <button ion-button icon-left (click)="save()" color="secondary">
+    <ion-icon name="checkmark"></ion-icon>
+    De acuerdo!
+  </button>
+</ion-content>

@@ -12,16 +12,19 @@
     <ion-item>
       <ion-icon item-start name="calendar"></ion-icon>
       <ion-label>Desde:</ion-label>
-      <ion-datetime displayFormat="DD/MMM/YYYY"></ion-datetime>
+      <ion-datetime displayFormat="DD/MMM/YYYY" [(ngModel)]="fecha_inicio"></ion-datetime>
     </ion-item>
   </ion-card>
   <ion-card>
     <ion-item>
       <ion-icon item-start name="calendar"></ion-icon>
       <ion-label>Hasta:</ion-label>
-      <ion-datetime displayFormat="DD/MMM/YYYY"></ion-datetime>
+      <ion-datetime displayFormat="DD/MMM/YYYY" [(ngModel)]="fecha_fin"></ion-datetime>
     </ion-item>
   </ion-card>
+
+  <button ion-button color="secondaryVariant" (click)='obtener_dias()'>Ver</button>
+
   <ion-card>
     <ion-card-content>
       <ion-grid class="tabla">

@@ -1,3 +1,4 @@
+import { HorasProvider } from './../../providers/horas/horas';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -14,12 +15,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'pagina-horas.html',
 })
 export class PaginaHorasPage {
+  fecha_inicio:string = '';
+  fecha_fin:string = '';
+  dias:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private horasProvider:HorasProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PaginaHorasPage');
+  obtener_dias(){
+    this.horasProvider.getDias(this.fecha_inicio,this.fecha_fin)
+    .then(data=>{
+      this.dias = data;
+      console.log(this.dias);
+    })
   }
+
+
+
+
+
+
 
 }

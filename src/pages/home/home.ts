@@ -12,7 +12,9 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
     this.paginaPrincipal = TabsPage;
   }
-
+  login() {
+    this.navCtrl.push('LoginPage');
+  }
   entrar() {
     this.navCtrl.setRoot(this.paginaPrincipal);
   }

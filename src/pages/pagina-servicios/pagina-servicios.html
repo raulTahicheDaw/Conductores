@@ -9,14 +9,13 @@
 
 <ion-content>
 
-  <ion-fab top right edge>
+  <ion-fab top right edge #fab>
     <button ion-fab color="light">
       <ion-icon name="list"></ion-icon>
     </button>
     <ion-fab-list side="left">
-      <button ion-button small color="secondaryVariant">Cerrar Dia</button>
-      <button ion-button small (click)="nuevo_servicio()">Añad. Serv</button>
-
+      <button ion-button small color="secondaryVariant" (click)="cerrar_dia(fab)"  >Cerrar Dia</button>
+      <button ion-button small (click)="nuevo_servicio(fab)">Añad. Serv</button>
     </ion-fab-list>
   </ion-fab>
   <ion-card>
@@ -45,8 +44,10 @@
               <ion-col>
                 Fin: <h1 align-self-end>{{servicio.hora_fin}}</h1>
               </ion-col>
-              <ion-col text-right align-self-end>
-                <ion-icon name="checkbox-outline" color="secondary"></ion-icon>
+              <ion-col text-right align-self-end (click)="cambiar_estado(servicio)">
+                <ion-icon name="checkmark-circle" color="secondary" *ngIf="servicio.estado == 'terminado'"></ion-icon>
+                <ion-icon name="alarm" color="warning" *ngIf="servicio.estado == 'pendiente'"></ion-icon>
+                <ion-icon name="close-circle" color="danger" *ngIf="servicio.estado == 'cancelado'"></ion-icon>
               </ion-col>
             </ion-row>
           </ion-card-content>

@@ -11,7 +11,7 @@
   <ion-card>
     <ion-item class="selDia">
       <ion-label>Selecciona dia:</ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY"></ion-datetime>
+      <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="fecha" (ionChange)=obtiene_dia()></ion-datetime>
     </ion-item>
   </ion-card>
   <ion-card>
@@ -19,11 +19,11 @@
       <ion-grid>
         <ion-row>
           <ion-col>Hora Inicio:</ion-col>
-          <ion-col class="col-hora">06:30</ion-col>
+          <ion-col class="col-hora">{{dia.hora_comienzo}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col>Hora Fin:</ion-col>
-          <ion-col class="col-hora">16:30</ion-col>
+          <ion-col class="col-hora">{{dia.hora_final}}</ion-col>
         </ion-row>
       </ion-grid>
 
@@ -31,38 +31,40 @@
       <ion-grid>
         <ion-row>
           <ion-col>Total Servicios</ion-col>
-          <ion-col>5</ion-col>
+          <ion-col></ion-col>
         </ion-row>
 
         <ion-row>
           <ion-col>Transfers (3/7)</ion-col>
-          <ion-col>1</ion-col>
+          <ion-col>{{dia.transfers_1}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col>Transfers (8/16)</ion-col>
-          <ion-col>5</ion-col>
+          <ion-col>{{dia.transfers_2}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col>Transfers (17/59)</ion-col>
-          <ion-col>5</ion-col>
+          <ion-col>{{dia.transfers_3}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col>Excursiones</ion-col>
-          <ion-col>5</ion-col>
+          <ion-col>{{dia.excursiones}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col>Otros Servicios</ion-col>
-          <ion-col>5</ion-col>
+          <ion-col>{{dia.otros_servicios}}</ion-col>
         </ion-row>
       </ion-grid>
 
       <ion-item>
         <ion-label>¿Turno partido?</ion-label>
-        <ion-label>SI/NO</ion-label>
+        <ion-label *ngIf="dia.turno_partido" > SI </ion-label>
+        <ion-label *ngIf="!dia.turno_partido" > NO </ion-label>
+
       </ion-item>
       <ion-item>
         <ion-label>Horas de T. Partido</ion-label>
-        <ion-label>0</ion-label>
+        <ion-label>{{dia.horas_partido}}</ion-label>
       </ion-item>
     </ion-card-content>
   </ion-card>

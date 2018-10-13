@@ -134,7 +134,7 @@ export class ServicioModalPage {
     let alert: any = this.alertCtrl.create({
       title: title,
       subTitle: message,
-      buttons: ['Got it!']
+      buttons: ['Ok!']
     });
     alert.present();
   }

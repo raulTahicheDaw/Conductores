@@ -20,6 +20,10 @@ import {PaginaResumenPage} from "../pages/pagina-resumen/pagina-resumen";
 import {PaginaServiciosPage} from "../pages/pagina-servicios/pagina-servicios";
 import { DatabaseProvider } from '../providers/database/database';
 import { HttpClientModule} from "@angular/common/http";
+import {LoginPage} from "../pages/login/login";
+import {LoginPageModule} from "../pages/login/login.module";
+import { ResumenDiaProvider } from '../providers/resumen-dia/resumen-dia';
+import { HorasProvider } from '../providers/horas/horas';
 
 export const firebaseconfig = {
   apiKey: "AIzaSyB3kWGIZjsQSih-PrECSCx9A0RMmD97_iY",
@@ -39,14 +43,15 @@ export const firebaseconfig = {
     PaginaResumenPage,
     PaginaServiciosPage,
     HomePage,
-    TabsPage
+    TabsPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseconfig),
     AngularFirestoreModule,
-    HttpClientModule
+    HttpClientModule,
+    LoginPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -57,13 +62,15 @@ export const firebaseconfig = {
     PaginaResumenPage,
     PaginaServiciosPage,
     HomePage,
-    TabsPage
+    TabsPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatabaseProvider,
+    ResumenDiaProvider,
+    HorasProvider,
 
   ]
 })
