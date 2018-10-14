@@ -34,6 +34,7 @@ export class ResumenDiaProvider {
     }
 
     getDia(collectionObj: string, fecha: string): Promise<any> {
+      //fecha = new Date(fecha);
       return new Promise((resolve, reject) => {
         this._DB
           .collection(collectionObj)

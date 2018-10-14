@@ -17,10 +17,13 @@ export class HorasProvider {
   }
 
   getDias(fecha_inicio: string, fecha_fin: string) {
+    //fecha_inicio = new Date(fecha_inicio);
+    //fecha_fin = new Date (fecha_fin);
     return new Promise((resolve, reject) => {
       this._DB
         .collection(this._COLL)
-        .where("fecha", "=>", fecha_inicio)
+        .where("fecha", ">=", fecha_inicio)
+        .where("fecha", "<=", fecha_fin)
         .get()
         .then(querySnapshot => {
           // Declaramos un array donde guardamos los documentos

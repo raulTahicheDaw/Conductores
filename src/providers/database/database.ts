@@ -19,6 +19,7 @@ export class DatabaseProvider {
   }
 
   getServicios(collectionObj: string, fecha: string): Promise<any> {
+    //fecha = new Date(fecha);
     return new Promise((resolve, reject) => {
       this._DB
         .collection(collectionObj)

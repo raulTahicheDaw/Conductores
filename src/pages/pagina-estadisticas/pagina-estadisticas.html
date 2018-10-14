@@ -11,46 +11,46 @@
   <ion-card>
     <ion-item>
       <ion-label>Mes</ion-label>
-      <ion-datetime displayFormat="MMM/YYYY"></ion-datetime>
+      <ion-datetime displayFormat="MMM/YYYY" [(ngModel)]="mes" (ionChange)='get_datos()'></ion-datetime>
     </ion-item>
   </ion-card>
   <ion-card>
     <ion-list>
       <ion-item>
         <ion-label>Dias Trabajados:</ion-label>
-        <ion-badge item-end>21</ion-badge>
+        <ion-badge item-end>{{diasTrabajados}}</ion-badge>
       </ion-item>
       <ion-item>
         <ion-label>Dias Libres:</ion-label>
-        <ion-badge item-end>9</ion-badge>
+        <ion-badge item-end>{{diasLibres}}</ion-badge>
       </ion-item>
+      <ion-item>
+          <ion-label>Total Horas/Mes:</ion-label>
+          <ion-badge item-end>{{totalHoras}}</ion-badge>
+        </ion-item>
       <ion-item>
         <ion-label>Media Horas/Dia:</ion-label>
-        <ion-badge item-end>10</ion-badge>
-      </ion-item>
-      <ion-item>
-        <ion-label>Total Horas/Mes:</ion-label>
-        <ion-badge item-end>200</ion-badge>
+        <ion-badge item-end>{{mediaHoras}}</ion-badge>
       </ion-item>
       <ion-item>
         <ion-label>Total Servicios Realizados:</ion-label>
-        <ion-badge item-end>140</ion-badge>
+        <ion-badge item-end>{{totalServicios}}</ion-badge>
       </ion-item>
       <ion-item>
         <ion-label>Transfers:</ion-label>
-        <ion-badge item-end>50</ion-badge>
+        <ion-badge item-end>{{transfers}}</ion-badge>
       </ion-item>
       <ion-item>
         <ion-label>Traslados:</ion-label>
-        <ion-badge item-end>40</ion-badge>
+        <ion-badge item-end>{{traslados}}</ion-badge>
       </ion-item>
       <ion-item>
         <ion-label>Excursiones:</ion-label>
-        <ion-badge item-end>5</ion-badge>
+        <ion-badge item-end>{{excursiones}}</ion-badge>
       </ion-item>
       <ion-item>
         <ion-label>Otros Servicios:</ion-label>
-        <ion-badge item-end>45</ion-badge>
+        <ion-badge item-end>{{otrosServicios}}</ion-badge>
       </ion-item>
     </ion-list>
   </ion-card>

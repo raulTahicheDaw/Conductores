@@ -23,24 +23,46 @@
     </ion-item>
   </ion-card>
 
-  <button ion-button color="secondaryVariant" (click)='obtener_dias()'>Ver</button>
+  <button ion-button color="secondaryVariant" (click)='obtener_dias()' block>Ver</button>
 
   <ion-card>
     <ion-card-content>
       <ion-grid class="tabla">
         <ion-row>
           <ion-col text-end align-self-center class="leyenda">Dias:</ion-col>
-          <ion-col text-center class="cantidad">7</ion-col>
+          <ion-col text-center class="cantidad">{{total_dias}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col text-end align-self-center class="leyenda">Horas:</ion-col>
-          <ion-col text-center class="cantidad">40</ion-col>
+          <ion-col text-center class="cantidad">{{total_horas}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col text-end align-self-center class="leyenda">Dias libres:</ion-col>
-          <ion-col text-center class="cantidad">2</ion-col>
+          <ion-col text-center class="cantidad">{{dias_libres}}</ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <h1>Dias</h1>
+    </ion-card-header>
+    <ion-list>
+      <ion-item-sliding *ngFor="let dia of dias">
+        <ion-item >
+          <ion-label item-start>{{dia.fecha | date:'dd/MM/yyyy'}}</ion-label>
+          <ion-note item-end>{{dia.hora_comienzo}}</ion-note>
+          <ion-note item-end>{{dia.hora_final}}</ion-note>
+        </ion-item>
+        <ion-item-options side="right">
+            <button ion-button color="danger">
+              <ion-icon name="trash"></ion-icon>
+              Borrar
+            </button>
+          </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
   </ion-card>
 </ion-content>

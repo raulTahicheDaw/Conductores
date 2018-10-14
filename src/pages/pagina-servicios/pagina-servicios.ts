@@ -1,4 +1,6 @@
 import { DiaInterface } from "./../../models/dia.interface";
+import { LoadingController } from "ionic-angular";
+
 import { Component } from "@angular/core";
 import {
   AlertController,
@@ -22,10 +24,12 @@ import { ResumenDiaProvider } from "../../providers/resumen-dia/resumen-dia";
   templateUrl: "pagina-servicios.html"
 })
 export class PaginaServiciosPage {
+  showLoading: boolean = true;
+
   fecha = moment().format("YYYY-MM-DD");
 
   private _COLL: string = "servicios";
-  private _DIASCOLL: string = 'dias';
+  private _DIASCOLL: string = "dias";
 
   public servicios: any;
 
@@ -40,7 +44,8 @@ export class PaginaServiciosPage {
     private _DB: DatabaseProvider,
     private alertCtrl: AlertController,
     private events: Events,
-    private resumenProvider: ResumenDiaProvider
+    private resumenProvider: ResumenDiaProvider,
+    private loadingCtrl: LoadingController
   ) {}
 
   ionViewDidEnter() {
@@ -48,6 +53,7 @@ export class PaginaServiciosPage {
   }
 
   obtener_servicios(): void {
+    this.presentLoading();
     this._DB
       .getServicios(this._COLL, this.fecha)
       .then(data => {
@@ -131,7 +137,7 @@ export class PaginaServiciosPage {
   cerrar_dia(fab) {
     fab.close();
 
-    let dia: DiaInterface = {
+    let dia: any = {
       fecha: "",
       conductor: "",
       hora_comienzo: "",
@@ -212,5 +218,13 @@ export class PaginaServiciosPage {
       ]
     });
     prompt.present();
+  }
+
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 3000
+    });
+    loader.present();
   }
 }
