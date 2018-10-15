@@ -2,13 +2,13 @@
 
 export interface ServicioInterface {
   id?: string,
-  num_conductor: string,
+  numConductor: string,
   fecha: string,
-  hora_inicio: string,
-  hora_fin: string,
+  horaInicio: string,
+  horaFin: string,
   estado: string,
-  lugar_inicio: string,
-  lugar_fin: string,
+  lugarInicio: string,
+  lugarFin: string,
   orden: string,
   pax: number,
   tipo: string,

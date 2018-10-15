@@ -12,33 +12,33 @@
     <ion-item>
       <ion-icon item-start name="calendar"></ion-icon>
       <ion-label>Desde:</ion-label>
-      <ion-datetime displayFormat="DD/MMM/YYYY" [(ngModel)]="fecha_inicio"></ion-datetime>
+      <ion-datetime displayFormat="DD/MMM/YYYY" [(ngModel)]="fechaInicio"></ion-datetime>
     </ion-item>
   </ion-card>
   <ion-card>
     <ion-item>
       <ion-icon item-start name="calendar"></ion-icon>
       <ion-label>Hasta:</ion-label>
-      <ion-datetime displayFormat="DD/MMM/YYYY" [(ngModel)]="fecha_fin"></ion-datetime>
+      <ion-datetime displayFormat="DD/MMM/YYYY" [(ngModel)]="fechaFin"></ion-datetime>
     </ion-item>
   </ion-card>
 
-  <button ion-button color="secondaryVariant" (click)='obtener_dias()' block>Ver</button>
+  <button ion-button color="secondaryVariant" (click)='obtenerDias()' block>Ver</button>
 
   <ion-card>
     <ion-card-content>
       <ion-grid class="tabla">
         <ion-row>
           <ion-col text-end align-self-center class="leyenda">Dias:</ion-col>
-          <ion-col text-center class="cantidad">{{total_dias}}</ion-col>
+          <ion-col text-center class="cantidad">{{totalDias}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col text-end align-self-center class="leyenda">Horas:</ion-col>
-          <ion-col text-center class="cantidad">{{total_horas}}</ion-col>
+          <ion-col text-center class="cantidad">{{totalHoras}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col text-end align-self-center class="leyenda">Dias libres:</ion-col>
-          <ion-col text-center class="cantidad">{{dias_libres}}</ion-col>
+          <ion-col text-center class="cantidad">{{diasLibres}}</ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
@@ -52,8 +52,8 @@
       <ion-item-sliding *ngFor="let dia of dias">
         <ion-item >
           <ion-label item-start>{{dia.fecha | date:'dd/MM/yyyy'}}</ion-label>
-          <ion-note item-end>{{dia.hora_comienzo}}</ion-note>
-          <ion-note item-end>{{dia.hora_final}}</ion-note>
+          <ion-note item-end>{{dia.horaComienzo}}</ion-note>
+          <ion-note item-end>{{dia.horaFinal}}</ion-note>
         </ion-item>
         <ion-item-options side="right">
             <button ion-button color="danger">

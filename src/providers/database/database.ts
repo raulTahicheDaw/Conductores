@@ -24,7 +24,7 @@ export class DatabaseProvider {
       this._DB
         .collection(collectionObj)
         .where("fecha", "==", fecha)
-        .orderBy("hora_inicio", "asc")
+        .orderBy("horaInicio", "asc")
         .get()
         .then(querySnapshot => {
           // Declaramos un array donde guardamos los documentos
@@ -36,13 +36,13 @@ export class DatabaseProvider {
           querySnapshot.forEach((doc: any) => {
             obj.push({
               id: doc.id,
-              num_conductor: doc.data().num_conductor,
+              numConductor: doc.data().numConductor,
               fecha: doc.data().fecha,
-              hora_inicio: doc.data().hora_inicio,
-              hora_fin: doc.data().hora_fin,
+              horaInicio: doc.data().horaInicio,
+              horaFin: doc.data().horaFin,
               estado: doc.data().estado,
-              lugar_inicio: doc.data().lugar_inicio,
-              lugar_fin: doc.data().lugar_fin,
+              lugarInicio: doc.data().lugarInicio,
+              lugarFin: doc.data().lugarFin,
               orden: doc.data().orden,
               pax: doc.data().pax,
               tipo: doc.data().tipo

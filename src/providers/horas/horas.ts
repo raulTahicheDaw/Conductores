@@ -16,14 +16,14 @@ export class HorasProvider {
     this._DB = firebase.firestore();
   }
 
-  getDias(fecha_inicio: string, fecha_fin: string) {
+  getDias(fechaInicio: string, fechaFin: string) {
     //fecha_inicio = new Date(fecha_inicio);
     //fecha_fin = new Date (fecha_fin);
     return new Promise((resolve, reject) => {
       this._DB
         .collection(this._COLL)
-        .where("fecha", ">=", fecha_inicio)
-        .where("fecha", "<=", fecha_fin)
+        .where("fecha", ">=", fechaInicio)
+        .where("fecha", "<=", fechaFin)
         .get()
         .then(querySnapshot => {
           // Declaramos un array donde guardamos los documentos
@@ -36,17 +36,17 @@ export class HorasProvider {
             obj.push({
               id: doc.id,
               fecha: doc.data().fecha,
-              hora_comienzo: doc.data().hora_comienzo,
-              hora_final: doc.data().hora_final,
+              horaComienzo: doc.data().horaComienzo,
+              horaFinal: doc.data().horaFinal,
               conductor: doc.data().conductor,
               estado: doc.data().estado,
               transfers_1: doc.data().transfers_1,
               transfers_2: doc.data().transfers_2,
               transfers_3: doc.data().transfers_3,
               excursiones: doc.data().excursiones,
-              otros_servicios: doc.data().otros_servicios,
-              turno_partido: doc.data().turno_partido,
-              horas_partido: doc.data().horas_partido,
+              otrosServicios: doc.data().otrosServicios,
+              turnoPartido: doc.data().turnoPartido,
+              horasPartido: doc.data().horasPartido,
               traslados: doc.data().traslados
             });
           });

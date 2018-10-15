@@ -29,7 +29,7 @@ export class EstadoModalPage {
   }
 
   save() {
-    this.horaInicio = this.servicio.hora_inicio;
+    this.horaInicio = this.servicio.horaInicio;
     if (this.estado == 'terminado' && this.horaFin < this.horaInicio) {
       const toast = this.toastCtrl.create({
         message: "La hora de fin no puede ser anterior al comienzo",
@@ -39,7 +39,7 @@ export class EstadoModalPage {
     } else {
       this.servicio.estado = this.estado;
       if (this.estado == 'pendiente' || this.estado == 'cancelado') this.horaFin = '';
-      this.servicio.hora_fin = this.horaFin;
+      this.servicio.horaFin = this.horaFin;
       this.viewCtrl.dismiss(this.servicio);
     }
   }

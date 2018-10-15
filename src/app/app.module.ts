@@ -26,7 +26,12 @@ import { ResumenDiaProvider } from '../providers/resumen-dia/resumen-dia';
 import { HorasProvider } from '../providers/horas/horas';
 
 export const firebaseconfig = {
- 
+  apiKey: "AIzaSyB3kWGIZjsQSih-PrECSCx9A0RMmD97_iY",
+  authDomain: "conductores-e3236.firebaseapp.com",
+  databaseURL: "https://conductores-e3236.firebaseio.com",
+  projectId: "conductores-e3236",
+  storageBucket: "conductores-e3236.appspot.com",
+  messagingSenderId: "31871567817"
 };
 
 @NgModule({

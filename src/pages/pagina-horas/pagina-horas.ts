@@ -11,12 +11,12 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
   templateUrl: "pagina-horas.html"
 })
 export class PaginaHorasPage {
-  fecha_inicio: string = "";
-  fecha_fin: string = "";
+  fechaInicio: string = "";
+  fechaFin: string = "";
   dias: any;
-  total_dias: number = 0;
-  total_horas: number = 0;
-  dias_libres: number = 0;
+  totalDias: number = 0;
+  totalHoras: number = 0;
+  diasLibres: number = 0;
 
   constructor(
     public navCtrl: NavController,
@@ -28,42 +28,42 @@ export class PaginaHorasPage {
    this.limpiar();
   }
 
-  obtener_dias() {
-    this.horasProvider.getDias(this.fecha_inicio, this.fecha_fin).then(data => {
+  obtenerDias() {
+    this.horasProvider.getDias(this.fechaInicio, this.fechaFin).then(data => {
       this.dias = data;
       console.log(this.dias);
-      this.calcular_dias();
-      this.calcular_horas();
-      this.calcular_dias_libres();
+      this.calcularDias();
+      this.calcularHoras();
+      this.calcularDiasLibres();
     });
   }
 
-  calcular_dias() {
-    let fechaINI = moment(this.fecha_inicio);
-    let fechaFIN = moment(this.fecha_fin);
-    this.total_dias = fechaFIN.diff(fechaINI, "days") + 1;
+  calcularDias() {
+    let fechaINI = moment(this.fechaInicio);
+    let fechaFIN = moment(this.fechaFin);
+    this.totalDias = fechaFIN.diff(fechaINI, "days") + 1;
   }
 
-  calcular_horas() {
-    this.total_horas = 0;
+  calcularHoras() {
+    this.totalHoras = 0;
     this.dias.forEach(element => {
-      let comienzo = moment(element.fecha + " " + element.hora_comienzo);
-      let final = moment(element.fecha + " " + element.hora_final);
+      let comienzo = moment(element.fecha + " " + element.horaComienzo);
+      let final = moment(element.fecha + " " + element.horaFinal);
       let horas = final.diff(comienzo, 'hours');
-      this.total_horas+=horas;
+      this.totalHoras+=horas;
     });
   }
 
-  calcular_dias_libres(){
-    this.dias_libres = this.total_dias-this.dias.length;
+  calcularDiasLibres(){
+    this.diasLibres = this.totalDias-this.dias.length;
   }
 
   limpiar(){
-    this.fecha_inicio = "";
-    this.fecha_fin = "";
-    this.total_dias = 0;
-    this.total_horas = 0;
-    this.dias_libres = 0;
+    this.fechaInicio = "";
+    this.fechaFin = "";
+    this.totalDias = 0;
+    this.totalHoras = 0;
+    this.diasLibres = 0;
     this.dias= undefined;
   }
 

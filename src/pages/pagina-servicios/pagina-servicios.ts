@@ -49,11 +49,10 @@ export class PaginaServiciosPage {
   ) {}
 
   ionViewDidEnter() {
-    this.obtener_servicios();
+    this.obtenerServicios();
   }
 
-  obtener_servicios(): void {
-    this.presentLoading();
+  obtenerServicios(): void {
     this._DB
       .getServicios(this._COLL, this.fecha)
       .then(data => {
@@ -67,12 +66,12 @@ export class PaginaServiciosPage {
       .catch();
   }
 
-  nuevo_servicio(fab) {
+  nuevoServicio(fab) {
     this.navCtrl.push("ServicioModalPage", { fecha: this.fecha });
     fab.close();
   }
 
-  actualizar_servicio(servicio) {
+  actualizarServicio(servicio) {
     this.navCtrl.push("ServicioModalPage", {
       fecha: this.fecha,
       actualizar: true,
@@ -80,7 +79,7 @@ export class PaginaServiciosPage {
     });
   }
 
-  eliminar_servicio(servicio): void {
+  eliminarServicio(servicio): void {
     this._DB
       .deleteServicio(this._COLL, servicio.id)
       .then((data: any) => {
@@ -102,7 +101,7 @@ export class PaginaServiciosPage {
         {
           text: "Ok!",
           handler: () => {
-            this.obtener_servicios();
+            this.obtenerServicios();
           }
         }
       ]
@@ -110,7 +109,7 @@ export class PaginaServiciosPage {
     alert.present();
   }
 
-  cambiar_estado(servicio) {
+  cambiarEstado(servicio) {
     let modalCambiarEstado = this.modalCtrl.create("EstadoModalPage", {
       servicio
     });
@@ -121,7 +120,7 @@ export class PaginaServiciosPage {
         this._DB
           .updateServicio(this._COLL, servicio.id, servicio)
           .then(response => {
-            this.obtener_servicios();
+            this.obtenerServicios();
             this.displayAlert(
               "Estado Actualizado",
               "Se ha cambiado el estado correctamente"
@@ -134,22 +133,22 @@ export class PaginaServiciosPage {
     });
   }
 
-  cerrar_dia(fab) {
+  cerrarDia(fab) {
     fab.close();
 
     let dia: any = {
       fecha: "",
       conductor: "",
-      hora_comienzo: "",
-      hora_final: "",
+      horaComienzo: "",
+      horaFinal: "",
       estado: true,
       transfers_1: 0,
       transfers_2: 0,
       transfers_3: 0,
       excursiones: 0,
-      otros_servicios: 0,
-      turno_partido: false,
-      horas_partido: 0,
+      otrosServicios: 0,
+      turnoPartido: false,
+      horasPartido: 0,
       traslados: 0
     };
 
@@ -159,11 +158,11 @@ export class PaginaServiciosPage {
         "Introduce la hora de comienzo del día y la hora de finalización.",
       inputs: [
         {
-          name: "hora_comienzo",
+          name: "horaComienzo",
           placeholder: "Hora de comienzo"
         },
         {
-          name: "hora_finzalizacion",
+          name: "horaFinalizacion",
           placeholder: "Hora de finalización"
         }
       ],
@@ -201,17 +200,17 @@ export class PaginaServiciosPage {
                   dia.traslados++;
                   break;
                 case "Otro":
-                  dia.otros_servicios++;
+                  dia.otrosServicios++;
                   break;
                 case "Partido":
-                  dia.turno_partido = true;
+                  dia.turnoPartido = true;
                   break;
               }
             });
             dia.conductor = "1";
             dia.fecha = this.fecha;
-            dia.hora_comienzo = data.hora_comienzo;
-            dia.hora_final = data.hora_finzalizacion;
+            dia.horaComienzo = data.horaComienzo;
+            dia.horaFinal = data.horaFinalizacion;
             this.resumenProvider.addDia(this._DIASCOLL, dia);
           }
         }

@@ -19,11 +19,11 @@ export class ServicioModalPage {
   servicio: any = {
     estado: "pendiente",
     fecha: "",
-    hora_fin: "",
-    hora_inicio: "",
-    lugar_fin: "",
-    lugar_inicio: "",
-    num_conductor: "",
+    horaFin: "",
+    horaInicio: "",
+    lugarFin: "",
+    lugarInicio: "",
+    numConductor: "",
     orden: "",
     pax: 0,
     tipo: ""
@@ -56,9 +56,9 @@ export class ServicioModalPage {
       this.actualizar = true;
       this.fecha = this.servicio.fecha;
       this.tipo = this.servicio.tipo;
-      this.horaComienzo = this.servicio.hora_inicio;
-      this.lugarFin = this.servicio.lugar_fin;
-      this.lugarComienzo = this.servicio.lugar_inicio;
+      this.horaComienzo = this.servicio.horaInicio;
+      this.lugarFin = this.servicio.lugarFin;
+      this.lugarComienzo = this.servicio.lugarInicio;
       this.pax = this.servicio.pax;
       this.orden = this.servicio.orden;
     } else {
@@ -78,9 +78,9 @@ export class ServicioModalPage {
   update() {
     this._DB
       .updateServicio(this._COLL, this.servicio.id, {
-        hora_inicio: this.horaComienzo,
-        lugar_fin: this.lugarFin,
-        lugar_inicio: this.lugarComienzo,
+        horaInicio: this.horaComienzo,
+        lugarFin: this.lugarFin,
+        lugarInicio: this.lugarComienzo,
         orden: this.orden,
         pax: this.pax,
         tipo: this.tipo
@@ -100,13 +100,13 @@ export class ServicioModalPage {
 
   save() {
     this.servicio.fecha = this.fecha;
-    this.servicio.hora_inicio = this.horaComienzo;
-    this.servicio.lugar_inicio = this.lugarComienzo;
-    this.servicio.lugar_fin = this.lugarFin;
+    this.servicio.horaInicio = this.horaComienzo;
+    this.servicio.lugarInicio = this.lugarComienzo;
+    this.servicio.lugarFin = this.lugarFin;
     this.servicio.pax = this.pax;
     this.servicio.orden = this.orden;
-    this.servicio.hora_fin = "";
-    this.servicio.num_conductor = "1";
+    this.servicio.horaFin = "";
+    this.servicio.numConductor = "1";
     this.servicio.estado = "pendiente";
     this.servicio.tipo = this.tipo;
 
@@ -128,7 +128,7 @@ export class ServicioModalPage {
     this.navCtrl.popToRoot();
   }
 
-  entrada_salida() {
+  entradaSalida() {
     switch (this.tipo) {
       case "Entrada":
         this.lugarComienzo = "Apto";

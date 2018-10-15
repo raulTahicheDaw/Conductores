@@ -14,14 +14,14 @@
       <ion-icon name="list"></ion-icon>
     </button>
     <ion-fab-list side="left">
-      <button ion-button small color="secondaryVariant" (click)="cerrar_dia(fab)"  >Cerrar Dia</button>
-      <button ion-button small (click)="nuevo_servicio(fab)">Añad. Serv</button>
+      <button ion-button small color="secondaryVariant" (click)="cerrarDia(fab)"  >Cerrar Dia</button>
+      <button ion-button small (click)="nuevoServicio(fab)">Añad. Serv</button>
     </ion-fab-list>
   </ion-fab>
   <ion-card>
     <ion-item>
       <ion-label>Selecciona dia:</ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="fecha" (ionChange)="obtener_servicios()"></ion-datetime>
+      <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="fecha" (ionChange)="obtenerServicios()"></ion-datetime>
       <ion-badge item-end color="secondary">Abierto</ion-badge>
     </ion-item>
   </ion-card>
@@ -31,20 +31,20 @@
         <ion-card padding color="blueGray">
           <ion-card-title>
             <ion-row>
-              <ion-col>{{servicio.hora_inicio}}</ion-col>
+              <ion-col>{{servicio.horaInicio}}</ion-col>
               <ion-col text-right class="orden">{{servicio.orden}}</ion-col>
               <ion-col text-right class="orden">{{servicio.pax}}</ion-col>
             </ion-row>
           </ion-card-title>
           <ion-card-content>
             <ion-row>
-              <ion-col><h2>{{servicio.lugar_inicio}}-{{servicio.tipo}}-{{servicio.lugar_fin}}</h2></ion-col>
+              <ion-col><h2>{{servicio.lugarInicio}}-{{servicio.tipo}}-{{servicio.lugarFin}}</h2></ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
-                Fin: <h1 align-self-end>{{servicio.hora_fin}}</h1>
+                Fin: <h1 align-self-end>{{servicio.horaFin}}</h1>
               </ion-col>
-              <ion-col text-right align-self-end (click)="cambiar_estado(servicio)">
+              <ion-col text-right align-self-end (click)="cambiarEstado(servicio)">
                 <ion-icon name="checkmark-circle" color="secondary" *ngIf="servicio.estado == 'terminado'"></ion-icon>
                 <ion-icon name="alarm" color="warning" *ngIf="servicio.estado == 'pendiente'"></ion-icon>
                 <ion-icon name="close-circle" color="danger" *ngIf="servicio.estado == 'cancelado'"></ion-icon>
@@ -56,12 +56,12 @@
       <ion-item-options side="right">
 
         <button ion-button color="danger">
-          <ion-icon name="trash" (click)="eliminar_servicio(servicio)"></ion-icon>
+          <ion-icon name="trash" (click)="eliminarServicio(servicio)"></ion-icon>
           Borrar
         </button>
       </ion-item-options>
       <ion-item-options side="left">
-        <button ion-button color="light" (click)="actualizar_servicio(servicio)">
+        <button ion-button color="light" (click)="actualizarServicio(servicio)">
           <ion-icon name="create"></ion-icon>
           Modif.
         </button>

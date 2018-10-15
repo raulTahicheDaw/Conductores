@@ -11,7 +11,7 @@
   <ion-card>
     <ion-item class="selDia">
       <ion-label>Selecciona dia:</ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="fecha" (ionChange)=obtiene_dia()></ion-datetime>
+      <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="fecha" (ionChange)=obtieneDias()></ion-datetime>
     </ion-item>
   </ion-card>
   <ion-card>
@@ -19,11 +19,11 @@
       <ion-grid>
         <ion-row>
           <ion-col>Hora Inicio:</ion-col>
-          <ion-col class="col-hora">{{dia.hora_comienzo}}</ion-col>
+          <ion-col class="col-hora">{{dia.horaComienzo}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col>Hora Fin:</ion-col>
-          <ion-col class="col-hora">{{dia.hora_final}}</ion-col>
+          <ion-col class="col-hora">{{dia.horaFinal}}</ion-col>
         </ion-row>
       </ion-grid>
 
@@ -56,19 +56,19 @@
         </ion-row>
         <ion-row>
           <ion-col>Otros Servicios</ion-col>
-          <ion-col>{{dia.otros_servicios}}</ion-col>
+          <ion-col>{{dia.otrosServicios}}</ion-col>
         </ion-row>
       </ion-grid>
 
       <ion-item>
         <ion-label>¿Turno partido?</ion-label>
-        <ion-label *ngIf="dia.turno_partido" > SI </ion-label>
-        <ion-label *ngIf="!dia.turno_partido" > NO </ion-label>
+        <ion-label *ngIf="dia.turnoPartido" > SI </ion-label>
+        <ion-label *ngIf="!dia.turnoPartido" > NO </ion-label>
 
       </ion-item>
       <ion-item>
         <ion-label>Horas de T. Partido</ion-label>
-        <ion-label>{{dia.horas_partido}}</ion-label>
+        <ion-label>{{dia.horasPartido}}</ion-label>
       </ion-item>
     </ion-card-content>
   </ion-card>

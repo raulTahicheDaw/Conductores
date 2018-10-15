@@ -19,16 +19,16 @@ export class PaginaResumenPage {
   public dia: DiaInterface = {
     fecha: "",
     conductor: "",
-    hora_comienzo: "",
-    hora_final: "",
+    horaComienzo: "",
+    horaFinal: "",
     estado: true,
     transfers_1: 0,
     transfers_2: 0,
     transfers_3: 0,
     excursiones: 0,
-    otros_servicios: 0,
-    turno_partido: false,
-    horas_partido: 0,
+    otrosServicios: 0,
+    turnoPartido: false,
+    horasPartido: 0,
     traslados: 0
   };
 
@@ -36,31 +36,31 @@ export class PaginaResumenPage {
               private alertCtrl: AlertController) {}
 
 
-  obtiene_dia() {
+  obtieneDias() {
     this.resumenProvider.getDia(this._DIASCOLL, this.fecha)
     .then(data=>{
       if (data.length > 0){
         this.dia = data[0];
       }else{
         this.displayAlert('INFO', 'No hay datos para ese día');
-        this.limpiar_campos();
+        this.limpiarCampos();
       }
     })
   }
 
-  limpiar_campos(){
+  limpiarCampos(){
     this.dia.fecha= "";
     this.dia.conductor= "";
-    this.dia.hora_comienzo= "";
-    this.dia.hora_final= "";
+    this.dia.horaComienzo= "";
+    this.dia.horaFinal= "";
     this.dia.estado= true;
     this.dia.transfers_1= 0;
     this.dia.transfers_2= 0;
     this.dia.transfers_3= 0;
     this.dia.excursiones= 0;
-    this.dia.otros_servicios= 0;
-    this.dia.turno_partido= false;
-    this.dia.horas_partido= 0;
+    this.dia.otrosServicios= 0;
+    this.dia.turnoPartido= false;
+    this.dia.horasPartido= 0;
     this.dia.traslados= 0;
   }
 

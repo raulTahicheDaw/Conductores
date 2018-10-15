@@ -33,7 +33,7 @@ export class PaginaEstadisticasPage {
     this.limpiar();
   }
 
-  get_datos() {
+  getDatos() {
     if (this.mes == "") {
       return;
     }
@@ -64,8 +64,8 @@ export class PaginaEstadisticasPage {
     }
 
     this.dias.forEach(element => {
-      let comienzo = moment(element.fecha + " " + element.hora_comienzo);
-      let final = moment(element.fecha + " " + element.hora_final);
+      let comienzo = moment(element.fecha + " " + element.horaComienzo);
+      let final = moment(element.fecha + " " + element.horaFinal);
       let horas = final.diff(comienzo, "hours");
       this.totalHoras += horas;
       this.transfers += element.transfers_1;
@@ -73,7 +73,7 @@ export class PaginaEstadisticasPage {
       this.transfers += element.transfers_3;
       this.traslados += element.traslados;
       this.excursiones += element.excursiones;
-      this.otrosServicios += element.otros_servicios;
+      this.otrosServicios += element.otrosServicios;
     });
 
     if (this.totalHoras != 0 || this.diasTrabajados != 0) {
